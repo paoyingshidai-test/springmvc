@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Controller
 public class IndexController {
 
@@ -19,6 +23,9 @@ public class IndexController {
     @RequestMapping("indexPage")
     public ModelAndView indexPage(ModelAndView modelAndView) {
 
+        List<String> role = Stream.of("admin", "manage").collect(Collectors.toList());
+
+        modelAndView.addObject("roles", role);
         modelAndView.addObject("name", "植荣");
         modelAndView.setViewName("index");
 
